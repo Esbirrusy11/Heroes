@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Heroe {
@@ -141,30 +142,46 @@ public class Heroe {
     }
     public Arma seleccionArma(){
         Scanner sc=new Scanner(System.in);
+        boolean boo=true;
         printArmas();
-        System.out.println("Que arma quieres que posea tu héroe (1-4)");
-        int respu=sc.nextInt();
-        Arma ar=new Arma();
-        switch (respu){
-            case 1:
-                System.out.println("Tu héroe posee un Bastón Arcano ");
-                ar=Arsenal.getFirst();
-                break;
-            case 2:
-                System.out.println("Tu héroe posee un Arco Místico ");
-                ar=Arsenal.get(1);
-                break;
-            case 3:
-                System.out.println("Tu héroe posee una Espada Mortífera ");
-                ar=Arsenal.get(2);
-                break;
-            case 4:
-                System.out.println("Tu héroe posee una Daga Venenosa ");
-                ar=Arsenal.getLast();
-                break;
-            default:
-                System.out.println("Elige una opción válida");
-        }
+        Arma ar = new Arma();
+        do {
+            try {
+                System.out.println("¿Que arma quieres que posea tu héroe?");
+                int respu = sc.nextInt();
+                if (respu > 4) {
+                    ar = Arsenal.get(respu - 1);
+                    System.out.println("Tu héroe posee una " + ar.Nombre);
+                    boo=false;
+                }
+
+                if (respu == 1) {
+                    System.out.println("Tu héroe posee un Bastón Arcano ");
+                    ar = Arsenal.getFirst();
+                    boo=false;
+                }
+
+                if (respu == 2) {
+                    System.out.println("Tu héroe posee un Arco Místico ");
+                    ar = Arsenal.get(1);
+                    boo=false;
+                }
+                if (respu == 3) {
+                    System.out.println("Tu héroe posee una Espada Mortífera ");
+                    ar = Arsenal.get(2);
+                    boo=false;
+                }
+                if (respu == 4) {
+                    System.out.println("Tu héroe posee una Daga Venenosa ");
+                    ar = Arsenal.get(3);
+                    boo=false;
+                }
+
+            } catch (Exception e) {
+                System.out.println("Error elige una opción válida");
+                sc.nextLine();
+            }
+        } while (boo);
         return ar;
     }
     public void printHeroes(){
@@ -205,9 +222,10 @@ public class Heroe {
         Scanner sc=new Scanner(System.in);
         gestionArsenal();
         System.out.println("¿Cuál es el nombre del arma?");
-        String nombre= sc.next();
+        String nombre= sc.nextLine();
         System.out.println("¿Cuanto daño tiene?");
-        int daño= sc.nextInt();
-        Arsenal.add(new Arma(nombre,daño));
+        int danyo= sc.nextInt();
+        System.out.println("Arma añadida al arsenal");
+        Arsenal.add(new Arma(nombre,danyo));
     }
 }
