@@ -33,12 +33,20 @@ public class Main {
                             System.out.println("El Héroe "+nombre+" fue borrado correctamente");
                             System.out.println();
                         }else {
-                            System.out.println("El Héro "+ nombre+ " no existe en la lista");
+                            System.out.println("El Héroe "+ nombre+ " no existe en la lista");
                             System.out.println();
                         }
                         break;
                     case 4:
-
+                        System.out.println("¿Cuál es el nombre del héroe que quieres consultar?");
+                        String nombre2= sc.next();
+                        if (hero.Heroes.contains(hero.buscarHeroe(nombre2))) {
+                            System.out.println(hero.buscarHeroe(nombre2));
+                            System.out.println();
+                        }else {
+                            System.out.println("El Héro "+ nombre2+ " no existe en la lista");
+                            System.out.println();
+                        }
                         break;
                     case 5:
                         hero.printHeroes();
