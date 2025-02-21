@@ -20,32 +20,44 @@ public class Main {
                         break;
                     case 1:
                         hero.seleccionHeroe();
-
+                        System.out.println();
+                        Imprimirmenu();
                         break;
                     case 2:
                         hero.insertarArma();
+                        System.out.println();
+                        Imprimirmenu();
                         break;
                     case 3:
-                        System.out.println("¿Cuál es el nombre del héroe que quieres eliminar?");
-                        String nombre= sc.next();
-                        if (hero.Heroes.contains(hero.buscarHeroe(nombre))) {
-                            hero.Heroes.remove(hero.buscarHeroe(nombre));
-                            System.out.println("El Héroe "+nombre+" fue borrado correctamente");
-                            System.out.println();
+                        if (hero.Heroes.isEmpty()){
+                            System.out.println("No hay héroes en el gremio");
                         }else {
-                            System.out.println("El Héroe "+ nombre+ " no existe en la lista");
-                            System.out.println();
+                            System.out.println("¿Cuál es el nombre del héroe que quieres eliminar?");
+                            String nombre= sc.next();
+                            if (hero.Heroes.contains(hero.buscarHeroe(nombre))) {
+                                hero.Heroes.remove(hero.buscarHeroe(nombre));
+                                System.out.println("El Héroe "+nombre+" fue borrado correctamente");
+                                System.out.println();
+                            }else {
+                                System.out.println("El Héroe "+ nombre+ " no existe en la lista");
+                                System.out.println();
+                            }
                         }
+
                         break;
                     case 4:
-                        System.out.println("¿Cuál es el nombre del héroe que quieres consultar?");
-                        String nombre2= sc.next();
-                        if (hero.Heroes.contains(hero.buscarHeroe(nombre2))) {
-                            System.out.println(hero.buscarHeroe(nombre2));
-                            System.out.println();
+                        if (hero.Heroes.isEmpty()){
+                            System.out.println("No hay héroes en el gremio");
                         }else {
-                            System.out.println("El Héro "+ nombre2+ " no existe en la lista");
-                            System.out.println();
+                            System.out.println("¿Cuál es el nombre del héroe que quieres consultar?");
+                            String nombre2= sc.next();
+                            if (hero.Heroes.contains(hero.buscarHeroe(nombre2))) {
+                                System.out.println(hero.buscarHeroe(nombre2));
+                                System.out.println();
+                            }else {
+                                System.out.println("El Héro "+ nombre2+ " no existe en la lista");
+                                System.out.println();
+                            }
                         }
                         break;
                     case 5:
@@ -56,13 +68,14 @@ public class Main {
                         break;
                     default:
                         System.out.println("Elige una opción válida");
-                        Imprimirmenu();
                         System.out.println();
+                        Imprimirmenu();
+
                 }
             }catch (InputMismatchException e){
                 System.out.println("Error elige una opción válida");
-                Imprimirmenu();
                 System.out.println();
+                Imprimirmenu();
                 sc.nextLine();
             }
         }while (menu);
