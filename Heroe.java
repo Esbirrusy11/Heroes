@@ -1,291 +1,290 @@
-//Raúl Martínez Parra
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class Empleado {
-    String idEmpleado;
-    Double salario;
-    String nombre;
-    String puesto;
+public class Heroe {
+    String Nombre;
+    int Nivel;
+    int PuntosVida;
+    Arma arma;
 
-    public Empleado(String idEmpleado, Double salario, String nombre, String puesto) {
-        this.idEmpleado = idEmpleado;
-        this.salario = salario;
-        this.nombre = nombre;
-        this.puesto = puesto;
-    }
+    ArrayList<Heroe> Heroes=new ArrayList<>();
+    ArrayList<Arma> Arsenal=new ArrayList<>();
 
-    public Empleado() {
-    }
-
-    public String getIdEmpleado() {
-        return idEmpleado;
-    }
-
-    public void setIdEmpleado(String idEmpleado) {
-        this.idEmpleado = idEmpleado;
-    }
-
-    public Double getSalario() {
-        return salario;
-    }
-
-    public void setSalario(Double salario) {
-        this.salario = salario;
+    public void gestionArsenal(){
+        if (Arsenal.isEmpty()) {
+            Arsenal.add(new Arma("Bastón Arcano",50));
+            Arsenal.add(new Arma("Arco Místico",60));
+            Arsenal.add(new Arma("Espada Mortífera",75));
+            Arsenal.add(new Arma("Daga Venenosa",40));
+        }
     }
 
     public String getNombre() {
-        return nombre;
+        return Nombre;
     }
 
     public void setNombre(String nombre) {
-        this.nombre = nombre;
+        Nombre = nombre;
     }
 
-    public String getPuesto() {
-        return puesto;
+    public int getNivel() {
+        return Nivel;
     }
 
-    public void setPuesto(String puesto) {
-        this.puesto = puesto;
+    public void setNivel(int nivel) {
+        Nivel = nivel;
+    }
+
+    public int getPuntosVida() {
+        return PuntosVida;
+    }
+
+    public void setPuntosVida(int puntosVida) {
+        PuntosVida = puntosVida;
+    }
+
+    public Heroe(String nombre, int nivel, int puntosVida, Arma arma) {
+        Nombre = nombre;
+        Nivel = nivel;
+        PuntosVida = puntosVida;
+        this.arma = arma;
+    }
+
+    public Heroe() {
     }
 
     @Override
     public String toString() {
-        return
-                nombre+" \u2192 "+
-                        idEmpleado + " \u2192 "+
-                        salario + " \u2192 "+
-                        puesto;
-
+        return "Heroe -> " +
+                "Nombre='" + Nombre + '\'' +
+                ", Nivel=" + Nivel +
+                ", PuntosVida=" + PuntosVida;
     }
 
-    ArrayList<Empleado> Empleados=new ArrayList<>();
+    public void seleccionHeroe(){
+        Scanner sc=new Scanner(System.in);
+        boolean boo=true;
+        do {
+            try {
+                System.out.println("1.Guerrero/a");
+                System.out.println("2.Mago/a");
+                System.out.println("3.Arquero/a");
+                System.out.println("4.Asesino/a");
+                int opcion=sc.nextInt();
+                sc.nextLine();
+                if (opcion>4||opcion<1){
+                    System.out.println("Elige una opción válida");
+                }else {
+                    if (opcion == 1) {
+                        int lvl=-1;
+                        int pv=-1;
+                        int fuerza=-1;
+                        System.out.println("¿Cual es el nombre del Guerrero ?");
+                        String nombre = sc.nextLine();
+                        while (lvl<0){
+                            System.out.println("¿Cuál es su nivel?");
+                            lvl = sc.nextInt();
+                        }while (pv<0){
+                            System.out.println("¿Cuántos puntos de vida tiene?");
+                            pv = sc.nextInt();
+                        }
+                        while (fuerza<0){
+                            System.out.println("¿Cuanta fuerza tiene del Guerrero?");
+                            fuerza = sc.nextInt();
+                        }
 
-    private int findEmpleado(Empleado empleado){
-        if (Empleados.contains(empleado)){
-            return 1;
-        }else {
-            return -1;
+                        System.out.println("Nombre del Guerrero: " + nombre);
+                        System.out.println("Nivel: " + lvl);
+                        System.out.println("Puntos de Vida: " + pv);
+                        System.out.println("Fuerza: " + fuerza);
+                        System.out.println();
+                        Heroes.add(new Guerrero(nombre,lvl,pv,seleccionArma(),fuerza));
+                        boo=false;
+                    } else if (opcion == 2) {
+                        int lvl=-1;
+                        int pv=-1;
+                        int mana=-1;
+                        System.out.println("¿Cual es el nombre del Mago ?");
+                        String nombre = sc.nextLine();
+                        while (lvl<0){
+                            System.out.println("¿Cuál es su nivel?");
+                            lvl = sc.nextInt();
+                        }
+                        while (pv<0){
+                            System.out.println("¿Cuántos puntos de vida tiene?");
+                            pv = sc.nextInt();
+                        }
+                        while (mana<0){
+                            System.out.println("¿Cuanta maná tiene el mago?");
+                            mana = sc.nextInt();
+                        }
+                        System.out.println("Nombre del Mago: " + nombre);
+                        System.out.println("Nivel: " + lvl);
+                        System.out.println("Puntos de Vida: " + pv);
+                        System.out.println("Maná: " + mana);
+                        System.out.println();
+                        Heroes.add(new Mago(nombre,lvl,pv,seleccionArma(),mana));
+                        boo=false;
+                    } else if (opcion == 3) {
+                        int lvl=-1;
+                        int pv=-1;
+                        int precision=-1;
+                        System.out.println("¿Cual es el nombre del Arquero ?");
+                        String nombre = sc.nextLine();
+                        while (lvl<0){
+                            System.out.println("¿Cuál es su nivel?");
+                            lvl = sc.nextInt();
+                        }
+                        while (pv<0){
+                            System.out.println("¿Cuántos puntos de vida tiene?");
+                            pv = sc.nextInt();
+                        }
+                        while (precision<0){
+                            System.out.println("¿Cuanta precision tiene el Arquero?");
+                            precision = sc.nextInt();
+                        }
+
+                        System.out.println("Nombre del Arquero: " + nombre);
+                        System.out.println("Nivel: " + lvl);
+                        System.out.println("Puntos de Vida: " + pv);
+                        System.out.println("Punteria: " + precision);
+                        System.out.println();
+                        Heroes.add(new Arquero(nombre,lvl,pv,seleccionArma(),precision));
+                        boo=false;
+                    } else if (opcion == 4) {
+                        int lvl=-1;
+                        int pv=-1;
+                        int sigilo=-1;
+                        System.out.println("¿Cual es el nombre del Asesino ?");
+                        String nombre = sc.nextLine();
+                        while (lvl<0){
+                            System.out.println("¿Cuál es su nivel?");
+                            lvl = sc.nextInt();
+                        }
+                        while (pv<0){
+                            System.out.println("¿Cuántos puntos de vida tiene?");
+                            pv = sc.nextInt();
+                        }
+                        while (sigilo<0){
+                            System.out.println("¿Cuanto sigilo tiene el asesino?");
+                            sigilo = sc.nextInt();
+                        }
+
+                        System.out.println("Nombre del Asesino: " + nombre);
+                        System.out.println("Nivel: " + lvl);
+                        System.out.println("Puntos de Vida: " + pv);
+                        System.out.println("Sigilo: " + sigilo);
+                        System.out.println();
+                        Heroes.add(new Asesino(nombre,lvl,pv,seleccionArma(),sigilo));
+                        boo=false;
+                    }
+                }
+            }catch (Exception e){
+                System.out.println("Error: Elige un tipo de heroe");
+                sc.nextLine();
+            }
+            }while (boo);
+    }
+    public Arma seleccionArma(){
+        Scanner sc=new Scanner(System.in);
+        boolean boo=true;
+        printArmas();
+        Arma ar = new Arma();
+        do {
+            try {
+                System.out.println("¿Que arma quieres que posea tu héroe?");
+                int respu = sc.nextInt();
+                if (respu > 4) {
+                    ar = Arsenal.get(respu - 1);
+                    System.out.println("Tu héroe posee una " + ar.Nombre);
+                    boo=false;
+                }
+
+                if (respu == 1) {
+                    System.out.println("Tu héroe posee un Bastón Arcano ");
+                    ar = Arsenal.getFirst();
+                    boo=false;
+                }
+
+                if (respu == 2) {
+                    System.out.println("Tu héroe posee un Arco Místico ");
+                    ar = Arsenal.get(1);
+                    boo=false;
+                }
+                if (respu == 3) {
+                    System.out.println("Tu héroe posee una Espada Mortífera ");
+                    ar = Arsenal.get(2);
+                    boo=false;
+                }
+                if (respu == 4) {
+                    System.out.println("Tu héroe posee una Daga Venenosa ");
+                    ar = Arsenal.get(3);
+                    boo=false;
+                }
+
+            } catch (Exception e) {
+                System.out.println();
+                System.out.println("Error elige una opción válida");
+                printArmas();
+                sc.nextLine();
+            }
+        } while (boo);
+        return ar;
+    }
+    public void printHeroes(){
+        int cont =1;
+        System.out.println("Lista de Heroes :");
+        if (Heroes.isEmpty()){
+            System.out.println("No hay heroes registrados");
+        }
+        for (Heroe hero:Heroes){
+            System.out.println(cont+". "+hero);
+            cont++;
+
         }
     }
-
-    public int findEmpleado(String idEmpleado){
-        if (Empleados.contains(idEmpleado)){
-            return 1;
-        }else {
-            return -1;
+    public void printArmas(){
+        int cont =1;
+        gestionArsenal();
+        System.out.println("Lista de Armas :");
+        if (Arsenal.isEmpty()){
+            System.out.println("No hay armas registradas");
         }
-    }
-
-    public boolean addNewEmpleado(Empleado empleado){
-        boolean boo;
-        if (findEmpleado(empleado)<=0){
-            boo=false;
-            Empleados.add(empleado);
-
-        }else {
-            boo=true;
+        for (Arma arma:Arsenal){
+            System.out.println(cont+". "+arma);
+            cont++;
         }
-        return boo;
-    }
 
-    public boolean updateEmpleado(Empleado antiguo,Empleado nuevo){
-        boolean bolano;
-        if (findEmpleado(antiguo)<=0){
-            bolano=false;
-        }else {
-            Empleados.remove(antiguo);
-            Empleados.add(nuevo);
-            bolano=true;
-        }
-        return bolano;
     }
-
-    public boolean removeEmpleado(Empleado empleado){
-        boolean boo;
-        if (findEmpleado(empleado)>=0){
-            Empleados.remove(empleado);
-            boo=true;
-        }else {
-            boo=false;
-        }
-        return boo;
-    }
-
-    public Empleado queryEmpleado(String IdEmpleado){
-        for (Empleado conta:Empleados){
-            if (conta.getIdEmpleado().equalsIgnoreCase(IdEmpleado)){
+    public Heroe buscarHeroe(String nombre){
+        for (Heroe conta:Heroes){
+            if (conta.getNombre().equalsIgnoreCase(nombre)){
                 return conta;
             }
         }
         return null;
     }
 
-    public void printEmpleados(){
-        int cont =1;
-        System.out.println("Lista de empleados :");
-        if (Empleados.isEmpty()){
-            System.out.println("No hay empleados registrados");
-        }
-        for (Empleado con:Empleados){
-            System.out.println(cont+". "+con);
-            cont++;
-
-        }
-    }
-
-    public String validarIDEmpleado() {
+    public void insertarArma() {
         Scanner sc = new Scanner(System.in);
-        String idEmpleado;
-        boolean esValido;
+        gestionArsenal();
+        boolean boo=true;
+        System.out.println("¿Cuál es el nombre del arma?");
+        String nombre = sc.nextLine();
+        System.out.println("¿Cuanto daño tiene?");
         do {
-            esValido = true;
-            System.out.println("¿Cuál es el nuevo id del empleado?");
-            idEmpleado = sc.nextLine();
-
-            for (Empleado empleados : Empleados) {
-                if (idEmpleado.equalsIgnoreCase(empleados.idEmpleado)||idEmpleado.equals(empleados.idEmpleado)) {
-                    System.out.println("Error no se pueden añadir empleados con ID's iguales");
-                    System.out.println();
-                    esValido=false;
-                }
-            }
-            if (idEmpleado.length() != 9) {
-                System.out.println("Error: El idEmpleado debe tener exactamente 9 caracteres");
-                System.out.println();
-                esValido = false;
-            } else {
-
-                for (int i = 0; i < 8; i++) {
-                    if (!Character.isDigit(idEmpleado.charAt(i))) {
-                        System.out.println("Error: Los 8 primeros caracteres deben ser números");
-                        esValido = false;
-                        break;
-                    }
-                }
-
-                char letra = idEmpleado.charAt(8);
-                if (!Character.isLetter(letra)) {
-                    System.out.println("Error: El último carácter debe ser una letra");
-                    esValido = false;
-                }
-            }
-
-            if (esValido) {
-                System.out.println("ID Empleado Correcto");
-                System.out.println();
-            }
-
-        } while (!esValido);
-        return idEmpleado;
-
-    }
-
-    public String validarNombre() {
-        Scanner sc = new Scanner(System.in);
-        String nombre;
-        boolean esValido;
-
-        do {
-            esValido = true;
-            System.out.println("¿Cuál es el nombre del empleado?");
-            nombre = sc.nextLine();
-
-            if (nombre.isEmpty()){
-                System.out.println("El nombre no puede estar vacío");
-                System.out.println();
-                esValido=false;
-            }
-            for (char c : nombre.toCharArray()) {
-                if (!Character.isLetter(c) && c != ' ') {
-                    System.out.println("Error: El nombre solo puede contener letras y espacios.");
-                    System.out.println();
-                    esValido = false;
-                    break;
-                }
-            }
-            if (esValido) {
-                System.out.println(nombre + " → Es válido");
-                System.out.println();
-            }
-
-        } while (!esValido);
-        return  nombre;
-    }
-
-    public double validarSalario() {
-        Scanner sc=new Scanner(System.in);
-        double salario=0;
-        boolean esValido;
-        do {
-            esValido=true;
-            System.out.println("¿Cuál es el salario del Empleado?");
             try {
-                salario= sc.nextDouble();
 
-                if (salario<0||salario==0){
-                    System.out.println("El salario no puede ser negativo ni 0.");
-                    System.out.println();
-                    esValido=false;
+                int danyo = sc.nextInt();
+                System.out.println("Arma añadida al arsenal");
+                Arsenal.add(new Arma(nombre, danyo));
+                boo=false;
 
-                }if (esValido){
-                    System.out.println("Salario Correcto");
-                    System.out.println();
-
-                }
-            }catch (InputMismatchException e){
-                System.out.println("Error: El salario no puede contener letras");
-                System.out.println();
-                esValido=false;
-                sc.next();
+            } catch (Exception e) {
+                System.out.println("¿Cuánto daño tiene?");
+                sc.nextLine();
             }
-        }while (!esValido);
-        return salario;
-    }
-
-    public String validarPuesto() {
-        Scanner sc=new Scanner(System.in);
-        String puesto;
-        boolean esValido;
-        do {
-            esValido=true;
-            System.out.println("¿Cuál es el puesto del Empleado?");
-            puesto= sc.nextLine();
-            if (puesto==null||puesto.isEmpty()) {
-                System.out.println("Error: El puesto no puede estar vacío");
-                System.out.println();
-                esValido=false;
-            }
-            for (char c : puesto.toCharArray()) {
-                if (!Character.isLetter(c) && c != ' ') {
-                    System.out.println("Error: El Puesto solo puede contener letras y espacios.");
-                    System.out.println();
-                    esValido = false;
-                    break;
-                }
-            }
-            if (esValido){
-                System.out.println("Puesto Correcto");
-                System.out.println();
-            }
-        }while (!esValido);
-        return puesto;
-    }
-    public Empleado anyadirEmpleado() {
-
-        String idEmpleado = validarIDEmpleado();
-        String nombre = validarNombre();
-        double salario = validarSalario();
-        String puesto = validarPuesto();
-
-        System.out.println("Empleado añadido con éxito:");
-        System.out.println("ID: " + idEmpleado);
-        System.out.println("Nombre: " + nombre);
-        System.out.println("Salario: " + salario);
-        System.out.println("Puesto: " + puesto);
-        Empleado em=new Empleado(idEmpleado,salario,nombre,puesto);
-        return em;
+        } while (boo);
     }
 }
