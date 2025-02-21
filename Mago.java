@@ -1,8 +1,10 @@
+import java.util.ArrayList;
+
 public class Mago extends Heroe{
     int mana;
 
-    public Mago(String nombre, int nivel, int puntosVida, Arma arma, int mana) {
-        super(nombre, nivel, puntosVida, arma);
+    public Mago(String nombre, int nivel, int puntosVida, ArrayList<Arma> arsenalHeroe, int mana) {
+        super(nombre, nivel, puntosVida, arsenalHeroe);
         this.mana = mana;
     }
 
@@ -13,6 +15,7 @@ public class Mago extends Heroe{
                 " Nivel-> " + Nivel +
                 " PuntosVida-> " + PuntosVida +
                 " Maná-> " + mana +
-                " || Arma-> " + arma;
+                " || Armas-> " + arsenalHeroe;
+
     }
 }
