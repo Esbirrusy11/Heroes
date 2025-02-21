@@ -65,80 +65,126 @@ public class Heroe {
     public void seleccionHeroe(){
         Scanner sc=new Scanner(System.in);
         boolean boo=true;
-        System.out.println("1.Guerrero/a");
-        System.out.println("2.Mago/a");
-        System.out.println("3.Arquero/a");
-        System.out.println("4.Asesino/a");
-        int opcion=sc.nextInt();
-        if (opcion>4||opcion<1){
-            System.out.println("Elige una opción válida");
-        }else {
-        if (boo) {
-            if (opcion == 1) {
-                System.out.println("¿Cual es el nombre del Guerrero ?");
-                String nombre = sc.next();
-                System.out.println("¿Cuál es su nivel?");
-                int lvl = sc.nextInt();
-                System.out.println("¿Cuántos puntos de vida tiene?");
-                int pv = sc.nextInt();
-                System.out.println("¿Cuanta fuerza tiene del Guerrero?");
-                int fuerza = sc.nextInt();
-                System.out.println("Nombre del Guerrero: " + nombre);
-                System.out.println("Nivel: " + lvl);
-                System.out.println("Puntos de Vida: " + pv);
-                System.out.println("Fuerza: " + fuerza);
-                System.out.println();
-                Heroes.add(new Guerrero(nombre,lvl,pv,seleccionArma(),fuerza));
+        do {
+            try {
+                System.out.println("1.Guerrero/a");
+                System.out.println("2.Mago/a");
+                System.out.println("3.Arquero/a");
+                System.out.println("4.Asesino/a");
+                int opcion=sc.nextInt();
+                sc.nextLine();
+                if (opcion>4||opcion<1){
+                    System.out.println("Elige una opción válida");
+                }else {
+                    if (opcion == 1) {
+                        int lvl=-1;
+                        int pv=-1;
+                        int fuerza=-1;
+                        System.out.println("¿Cual es el nombre del Guerrero ?");
+                        String nombre = sc.nextLine();
+                        while (lvl<0){
+                            System.out.println("¿Cuál es su nivel?");
+                            lvl = sc.nextInt();
+                        }while (pv<0){
+                            System.out.println("¿Cuántos puntos de vida tiene?");
+                            pv = sc.nextInt();
+                        }
+                        while (fuerza<0){
+                            System.out.println("¿Cuanta fuerza tiene del Guerrero?");
+                            fuerza = sc.nextInt();
+                        }
 
-            } else if (opcion == 2) {
-                System.out.println("¿Cual es el nombre del Mago ?");
-                String nombre = sc.next();
-                System.out.println("¿Cuál es su nivel?");
-                int lvl = sc.nextInt();
-                System.out.println("¿Cuántos puntos de vida tiene?");
-                int pv = sc.nextInt();
-                System.out.println("¿Cuanta maná tiene el mago?");
-                int mana = sc.nextInt();
-                System.out.println("Nombre del Mago: " + nombre);
-                System.out.println("Nivel: " + lvl);
-                System.out.println("Puntos de Vida: " + pv);
-                System.out.println("Maná: " + mana);
-                System.out.println();
-                Heroes.add(new Mago(nombre,lvl,pv,seleccionArma(),mana));
-            } else if (opcion == 3) {
-                System.out.println("¿Cual es el nombre del Arquero ?");
-                String nombre = sc.next();
-                System.out.println("¿Cuál es su nivel?");
-                int lvl = sc.nextInt();
-                System.out.println("¿Cuántos puntos de vida tiene?");
-                int pv = sc.nextInt();
-                System.out.println("¿Cuanta precision tiene el Arquero?");
-                int punteria = sc.nextInt();
-                System.out.println("Nombre del Arquero: " + nombre);
-                System.out.println("Nivel: " + lvl);
-                System.out.println("Puntos de Vida: " + pv);
-                System.out.println("Punteria: " + punteria);
-                System.out.println();
-                Heroes.add(new Arquero(nombre,lvl,pv,seleccionArma(),punteria));
-            } else if (opcion == 4) {
-                System.out.println("¿Cual es el nombre del Asesino ?");
-                String nombre = sc.next();
-                System.out.println("¿Cuál es su nivel?");
-                int lvl = sc.nextInt();
-                System.out.println("¿Cuántos puntos de vida tiene?");
-                int pv = sc.nextInt();
-                System.out.println("¿Cuanto sigilo tiene el asesino?");
-                int sigilo = sc.nextInt();
-                System.out.println("Nombre del Asesino: " + nombre);
-                System.out.println("Nivel: " + lvl);
-                System.out.println("Puntos de Vida: " + pv);
-                System.out.println("Sigilo: " + sigilo);
-                System.out.println();
-                Heroes.add(new Asesino(nombre,lvl,pv,seleccionArma(),sigilo));
+                        System.out.println("Nombre del Guerrero: " + nombre);
+                        System.out.println("Nivel: " + lvl);
+                        System.out.println("Puntos de Vida: " + pv);
+                        System.out.println("Fuerza: " + fuerza);
+                        System.out.println();
+                        Heroes.add(new Guerrero(nombre,lvl,pv,seleccionArma(),fuerza));
+                        boo=false;
+                    } else if (opcion == 2) {
+                        int lvl=-1;
+                        int pv=-1;
+                        int mana=-1;
+                        System.out.println("¿Cual es el nombre del Mago ?");
+                        String nombre = sc.nextLine();
+                        while (lvl<0){
+                            System.out.println("¿Cuál es su nivel?");
+                            lvl = sc.nextInt();
+                        }
+                        while (pv<0){
+                            System.out.println("¿Cuántos puntos de vida tiene?");
+                            pv = sc.nextInt();
+                        }
+                        while (mana<0){
+                            System.out.println("¿Cuanta maná tiene el mago?");
+                            mana = sc.nextInt();
+                        }
+                        System.out.println("Nombre del Mago: " + nombre);
+                        System.out.println("Nivel: " + lvl);
+                        System.out.println("Puntos de Vida: " + pv);
+                        System.out.println("Maná: " + mana);
+                        System.out.println();
+                        Heroes.add(new Mago(nombre,lvl,pv,seleccionArma(),mana));
+                        boo=false;
+                    } else if (opcion == 3) {
+                        int lvl=-1;
+                        int pv=-1;
+                        int precision=-1;
+                        System.out.println("¿Cual es el nombre del Arquero ?");
+                        String nombre = sc.nextLine();
+                        while (lvl<0){
+                            System.out.println("¿Cuál es su nivel?");
+                            lvl = sc.nextInt();
+                        }
+                        while (pv<0){
+                            System.out.println("¿Cuántos puntos de vida tiene?");
+                            pv = sc.nextInt();
+                        }
+                        while (precision<0){
+                            System.out.println("¿Cuanta precision tiene el Arquero?");
+                            precision = sc.nextInt();
+                        }
 
+                        System.out.println("Nombre del Arquero: " + nombre);
+                        System.out.println("Nivel: " + lvl);
+                        System.out.println("Puntos de Vida: " + pv);
+                        System.out.println("Punteria: " + precision);
+                        System.out.println();
+                        Heroes.add(new Arquero(nombre,lvl,pv,seleccionArma(),precision));
+                        boo=false;
+                    } else if (opcion == 4) {
+                        int lvl=-1;
+                        int pv=-1;
+                        int sigilo=-1;
+                        System.out.println("¿Cual es el nombre del Asesino ?");
+                        String nombre = sc.nextLine();
+                        while (lvl<0){
+                            System.out.println("¿Cuál es su nivel?");
+                            lvl = sc.nextInt();
+                        }
+                        while (pv<0){
+                            System.out.println("¿Cuántos puntos de vida tiene?");
+                            pv = sc.nextInt();
+                        }
+                        while (sigilo<0){
+                            System.out.println("¿Cuanto sigilo tiene el asesino?");
+                            sigilo = sc.nextInt();
+                        }
+
+                        System.out.println("Nombre del Asesino: " + nombre);
+                        System.out.println("Nivel: " + lvl);
+                        System.out.println("Puntos de Vida: " + pv);
+                        System.out.println("Sigilo: " + sigilo);
+                        System.out.println();
+                        Heroes.add(new Asesino(nombre,lvl,pv,seleccionArma(),sigilo));
+                        boo=false;
+                    }
+                }
+            }catch (Exception e){
+                System.out.println("Error: Elige un tipo de heroe");
+                sc.nextLine();
             }
-            }
-        }
+            }while (boo);
     }
     public Arma seleccionArma(){
         Scanner sc=new Scanner(System.in);
@@ -178,7 +224,9 @@ public class Heroe {
                 }
 
             } catch (Exception e) {
+                System.out.println();
                 System.out.println("Error elige una opción válida");
+                printArmas();
                 sc.nextLine();
             }
         } while (boo);
@@ -218,14 +266,25 @@ public class Heroe {
         return null;
     }
 
-    public void insertarArma(){
-        Scanner sc=new Scanner(System.in);
+    public void insertarArma() {
+        Scanner sc = new Scanner(System.in);
         gestionArsenal();
+        boolean boo=true;
         System.out.println("¿Cuál es el nombre del arma?");
-        String nombre= sc.nextLine();
+        String nombre = sc.nextLine();
         System.out.println("¿Cuanto daño tiene?");
-        int danyo= sc.nextInt();
-        System.out.println("Arma añadida al arsenal");
-        Arsenal.add(new Arma(nombre,danyo));
+        do {
+            try {
+
+                int danyo = sc.nextInt();
+                System.out.println("Arma añadida al arsenal");
+                Arsenal.add(new Arma(nombre, danyo));
+                boo=false;
+
+            } catch (Exception e) {
+                System.out.println("¿Cuánto daño tiene?");
+                sc.nextLine();
+            }
+        } while (boo);
     }
 }
