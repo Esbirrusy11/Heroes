@@ -72,27 +72,30 @@ public class Heroe {
                 System.out.println("4.Asesino/a");
                 int opcion=sc.nextInt();
                 sc.nextLine();
+
                 if (opcion>4||opcion<1){
                     System.out.println("Elige una opción válida");
                 }else {
+                    
+                    int lvl=-1;
+                    int pv=-1;
+                    System.out.println("¿Cual es el nombre del Héroe ?");
+                    String nombre = sc.nextLine();
+                    while (lvl<0){
+                        System.out.println("¿Cuál es su nivel?");
+                        lvl = sc.nextInt();
+                    }
+                    while (pv<0){
+                        System.out.println("¿Cuántos puntos de vida tiene?");
+                        pv = sc.nextInt();
+                    }
                     if (opcion == 1) {
-                        int lvl=-1;
-                        int pv=-1;
+                        
                         int fuerza=-1;
-                        System.out.println("¿Cual es el nombre del Guerrero ?");
-                        String nombre = sc.nextLine();
-                        while (lvl<0){
-                            System.out.println("¿Cuál es su nivel?");
-                            lvl = sc.nextInt();
-                        }while (pv<0){
-                            System.out.println("¿Cuántos puntos de vida tiene?");
-                            pv = sc.nextInt();
-                        }
                         while (fuerza<0){
                             System.out.println("¿Cuanta fuerza tiene del Guerrero?");
                             fuerza = sc.nextInt();
                         }
-
                         System.out.println("Nombre del Guerrero: " + nombre);
                         System.out.println("Nivel: " + lvl);
                         System.out.println("Puntos de Vida: " + pv);
@@ -100,20 +103,10 @@ public class Heroe {
                         System.out.println();
                         Heroes.add(new Guerrero(nombre,lvl,pv,seleccionArma(),fuerza));
                         boo=false;
+
                     } else if (opcion == 2) {
-                        int lvl=-1;
-                        int pv=-1;
+
                         int mana=-1;
-                        System.out.println("¿Cual es el nombre del Mago ?");
-                        String nombre = sc.nextLine();
-                        while (lvl<0){
-                            System.out.println("¿Cuál es su nivel?");
-                            lvl = sc.nextInt();
-                        }
-                        while (pv<0){
-                            System.out.println("¿Cuántos puntos de vida tiene?");
-                            pv = sc.nextInt();
-                        }
                         while (mana<0){
                             System.out.println("¿Cuanta maná tiene el mago?");
                             mana = sc.nextInt();
@@ -125,20 +118,10 @@ public class Heroe {
                         System.out.println();
                         Heroes.add(new Mago(nombre,lvl,pv,seleccionArma(),mana));
                         boo=false;
+
                     } else if (opcion == 3) {
-                        int lvl=-1;
-                        int pv=-1;
+                        
                         int precision=-1;
-                        System.out.println("¿Cual es el nombre del Arquero ?");
-                        String nombre = sc.nextLine();
-                        while (lvl<0){
-                            System.out.println("¿Cuál es su nivel?");
-                            lvl = sc.nextInt();
-                        }
-                        while (pv<0){
-                            System.out.println("¿Cuántos puntos de vida tiene?");
-                            pv = sc.nextInt();
-                        }
                         while (precision<0){
                             System.out.println("¿Cuanta precision tiene el Arquero?");
                             precision = sc.nextInt();
@@ -151,20 +134,10 @@ public class Heroe {
                         System.out.println();
                         Heroes.add(new Arquero(nombre,lvl,pv,seleccionArma(),precision));
                         boo=false;
+
                     } else if (opcion == 4) {
-                        int lvl=-1;
-                        int pv=-1;
+
                         int sigilo=-1;
-                        System.out.println("¿Cual es el nombre del Asesino ?");
-                        String nombre = sc.nextLine();
-                        while (lvl<0){
-                            System.out.println("¿Cuál es su nivel?");
-                            lvl = sc.nextInt();
-                        }
-                        while (pv<0){
-                            System.out.println("¿Cuántos puntos de vida tiene?");
-                            pv = sc.nextInt();
-                        }
                         while (sigilo<0){
                             System.out.println("¿Cuanto sigilo tiene el asesino?");
                             sigilo = sc.nextInt();
@@ -183,7 +156,7 @@ public class Heroe {
                 System.out.println("Error: Elige un tipo de heroe");
                 sc.nextLine();
             }
-            }while (boo);
+        }while (boo);
     }
     public Arma seleccionArma(){
         Scanner sc=new Scanner(System.in);
