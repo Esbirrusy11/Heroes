@@ -1,8 +1,10 @@
+import java.util.ArrayList;
+
 public class Asesino extends Heroe{
     int sigilo;
 
-    public Asesino(String nombre, int nivel, int puntosVida, Arma arma, int sigilo) {
-        super(nombre, nivel, puntosVida, arma);
+    public Asesino(String nombre, int nivel, int puntosVida, ArrayList<Arma> arsenalHeroe, int sigilo) {
+        super(nombre, nivel, puntosVida, arsenalHeroe);
         this.sigilo = sigilo;
     }
 
@@ -13,6 +15,6 @@ public class Asesino extends Heroe{
                 " Nivel-> " + Nivel +
                 " PuntosVida-> " + PuntosVida +
                 " Sigilo-> " + sigilo +
-                " || Arma-> " + arma;
+                " || Armas-> " + arsenalHeroe;
     }
 }
