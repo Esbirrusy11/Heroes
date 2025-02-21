@@ -9,6 +9,7 @@ public class Heroe {
 
     ArrayList<Heroe> Heroes=new ArrayList<>();
     ArrayList<Arma> Arsenal=new ArrayList<>();
+    ArrayList<Arma> arsenalHeroe=new ArrayList<>();
 
     public void gestionArsenal(){
         if (Arsenal.isEmpty()) {
@@ -43,11 +44,11 @@ public class Heroe {
         PuntosVida = puntosVida;
     }
 
-    public Heroe(String nombre, int nivel, int puntosVida, Arma arma) {
+    public Heroe(String nombre, int nivel, int puntosVida, ArrayList<Arma> arsenalHeroe) {
         Nombre = nombre;
         Nivel = nivel;
         PuntosVida = puntosVida;
-        this.arma = arma;
+        this.arsenalHeroe = new ArrayList<>(arsenalHeroe);
     }
 
     public Heroe() {
@@ -55,10 +56,12 @@ public class Heroe {
 
     @Override
     public String toString() {
-        return "Heroe -> " +
+        return "Heroe" +
                 "Nombre='" + Nombre + '\'' +
                 ", Nivel=" + Nivel +
-                ", PuntosVida=" + PuntosVida;
+                ", PuntosVida=" + PuntosVida +
+                ", arma=" + arma +
+                ", arsenalHeroe=" + arsenalHeroe;
     }
 
     public void seleccionHeroe(){
@@ -76,7 +79,7 @@ public class Heroe {
                 if (opcion>4||opcion<1){
                     System.out.println("Elige una opción válida");
                 }else {
-                    
+
                     int lvl=-1;
                     int pv=-1;
                     System.out.println("¿Cual es el nombre del Héroe ?");
@@ -90,7 +93,7 @@ public class Heroe {
                         pv = sc.nextInt();
                     }
                     if (opcion == 1) {
-                        
+
                         int fuerza=-1;
                         while (fuerza<0){
                             System.out.println("¿Cuanta fuerza tiene del Guerrero?");
@@ -120,7 +123,7 @@ public class Heroe {
                         boo=false;
 
                     } else if (opcion == 3) {
-                        
+
                         int precision=-1;
                         while (precision<0){
                             System.out.println("¿Cuanta precision tiene el Arquero?");
@@ -158,51 +161,72 @@ public class Heroe {
             }
         }while (boo);
     }
-    public Arma seleccionArma(){
+
+
+    public ArrayList<Arma> seleccionArma(){
         Scanner sc=new Scanner(System.in);
-        boolean boo=true;
-        printArmas();
-        Arma ar = new Arma();
+        Arma ar;
+        int cont=0;
+        System.out.println("¿Cuántas armas quieres que posea tu héroe?");
+        int respus= sc.nextInt();
         do {
             try {
+                printArmas();
                 System.out.println("¿Que arma quieres que posea tu héroe?");
                 int respu = sc.nextInt();
+                if (respu<=0){
+                    System.out.println();
+                    System.out.println("Elige una opción válida");
+                    printArmas();
+                }
                 if (respu > 4) {
+                    System.out.println();
                     ar = Arsenal.get(respu - 1);
                     System.out.println("Tu héroe posee una " + ar.Nombre);
-                    boo=false;
+                    arsenalHeroe.add(ar);
+                    cont++;
+
                 }
 
                 if (respu == 1) {
+                    System.out.println();
                     System.out.println("Tu héroe posee un Bastón Arcano ");
                     ar = Arsenal.getFirst();
-                    boo=false;
+                    arsenalHeroe.add(ar);
+                    cont++;
                 }
 
                 if (respu == 2) {
+                    System.out.println();
                     System.out.println("Tu héroe posee un Arco Místico ");
                     ar = Arsenal.get(1);
-                    boo=false;
+                    arsenalHeroe.add(ar);
+                    cont++;
+
                 }
                 if (respu == 3) {
+                    System.out.println();
                     System.out.println("Tu héroe posee una Espada Mortífera ");
                     ar = Arsenal.get(2);
-                    boo=false;
+                    arsenalHeroe.add(ar);
+                    cont++;
                 }
                 if (respu == 4) {
+                    System.out.println();
                     System.out.println("Tu héroe posee una Daga Venenosa ");
                     ar = Arsenal.get(3);
-                    boo=false;
+                    arsenalHeroe.add(ar);
+                    cont++;
+
                 }
 
             } catch (Exception e) {
                 System.out.println();
                 System.out.println("Error elige una opción válida");
-                printArmas();
                 sc.nextLine();
             }
-        } while (boo);
-        return ar;
+        } while (cont<respus);
+        return arsenalHeroe;
     }
     public void printHeroes(){
         int cont =1;
@@ -244,11 +268,14 @@ public class Heroe {
         boolean boo=true;
         System.out.println("¿Cuál es el nombre del arma?");
         String nombre = sc.nextLine();
-        System.out.println("¿Cuanto daño tiene?");
+
+        int danyo = -1;
         do {
             try {
-
-                int danyo = sc.nextInt();
+                while (danyo<=0){
+                    System.out.println("¿Cuanto daño tiene?");
+                    danyo= sc.nextInt();
+                }
                 System.out.println("Arma añadida al arsenal");
                 Arsenal.add(new Arma(nombre, danyo));
                 boo=false;
