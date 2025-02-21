@@ -7,13 +7,10 @@ public class Arma {
         this.damage = damage;
     }
 
-    public Arma() {
-    }
-
     @Override
     public String toString() {
         return
-                  Nombre +
-                " Daño-> " + damage ;
+                Nombre + " | "+
+                        " Daño-> " + damage ;
     }
 }
