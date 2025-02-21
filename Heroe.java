@@ -54,16 +54,6 @@ public class Heroe {
     public Heroe() {
     }
 
-    @Override
-    public String toString() {
-        return "Heroe" +
-                "Nombre='" + Nombre + '\'' +
-                ", Nivel=" + Nivel +
-                ", PuntosVida=" + PuntosVida +
-                ", arma=" + arma +
-                ", arsenalHeroe=" + arsenalHeroe;
-    }
-
     public void seleccionHeroe(){
         Scanner sc=new Scanner(System.in);
         boolean boo=true;
@@ -105,6 +95,7 @@ public class Heroe {
                         System.out.println("Fuerza: " + fuerza);
                         System.out.println();
                         Heroes.add(new Guerrero(nombre,lvl,pv,seleccionArma(),fuerza));
+                        arsenalHeroe.clear();
                         boo=false;
 
                     } else if (opcion == 2) {
@@ -120,6 +111,7 @@ public class Heroe {
                         System.out.println("Maná: " + mana);
                         System.out.println();
                         Heroes.add(new Mago(nombre,lvl,pv,seleccionArma(),mana));
+                        arsenalHeroe.clear();
                         boo=false;
 
                     } else if (opcion == 3) {
@@ -136,6 +128,7 @@ public class Heroe {
                         System.out.println("Punteria: " + precision);
                         System.out.println();
                         Heroes.add(new Arquero(nombre,lvl,pv,seleccionArma(),precision));
+                        arsenalHeroe.clear();
                         boo=false;
 
                     } else if (opcion == 4) {
@@ -152,6 +145,7 @@ public class Heroe {
                         System.out.println("Sigilo: " + sigilo);
                         System.out.println();
                         Heroes.add(new Asesino(nombre,lvl,pv,seleccionArma(),sigilo));
+                        arsenalHeroe.clear();
                         boo=false;
                     }
                 }
@@ -227,6 +221,7 @@ public class Heroe {
             }
         } while (cont<respus);
         return arsenalHeroe;
+
     }
     public void printHeroes(){
         int cont =1;
