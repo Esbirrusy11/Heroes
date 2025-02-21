@@ -1,9 +1,11 @@
+import java.util.ArrayList;
+
 public class Guerrero extends  Heroe{
-   int fuerza;
+    int fuerza;
 
 
-    public Guerrero(String nombre, int nivel, int puntosVida, Arma arma, int fuerza) {
-        super(nombre, nivel, puntosVida, arma);
+    public Guerrero(String nombre, int nivel, int puntosVida, ArrayList<Arma> arsenalHeroe, int fuerza) {
+        super(nombre, nivel, puntosVida, arsenalHeroe);
         this.fuerza = fuerza;
     }
 
@@ -14,6 +16,6 @@ public class Guerrero extends  Heroe{
                 " Nivel-> " + Nivel +
                 " PuntosVida-> " + PuntosVida +
                 " Fuerza-> " + fuerza +
-                " || Arma-> " + arma;
+                " || Armas-> " + arsenalHeroe;
     }
 }
