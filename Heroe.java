@@ -5,8 +5,7 @@ public class Heroe {
     String Nombre;
     int Nivel;
     int PuntosVida;
-    Arma arma;
-
+   
     ArrayList<Heroe> Heroes=new ArrayList<>();
     ArrayList<Arma> Arsenal=new ArrayList<>();
     ArrayList<Arma> arsenalHeroe=new ArrayList<>();
